@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ads Disabler
-// @version      2.1
+// @version      2.2
 // @author       M47Z
 // @match        *://animesonline.cc/*
 // @updateURL    https://rawcdn.githack.com/imM47Z/animesonline.cc-Script-Pack/f2cacd4301b4281c47e6a926a0d7cbff8e2b8ebb/Ads Disabler.js
@@ -73,6 +73,21 @@
         return scriptsRemoved == 0;
     }
 
+    var RemoveAdsIFrames = ( ) => {
+        var iFramesArray = document.getElementsByTagName( "iframe" );
+        var iFramesRemoved = 0;
+        for( var i = 0; i < iFramesArray.length; i++ )
+        {
+            if( !iFramesArray[ i ].src.includes( "stremanp" ) )
+                continue;
+
+            iFramesArray[ i ].remove( );
+            iFramesRemoved++;
+        }
+
+        return iFramesRemoved == 0;
+    }
+
     // Simple Hook that does not disturbe the website flow
     window.document.addEventListener = ( type, listener, useCapture ) => {
         return true;
@@ -89,6 +104,11 @@
         var adsScriptsInterval = setInterval( ( ) => {
             if ( RemoveAdsScripts( ) )
                 clearInterval( adsScriptsInterval );
+        }, 500);
+
+        var adsiFramesInterval = setInterval( ( ) => {
+            if ( RemoveAdsIFrames( ) )
+                clearInterval( adsiFramesInterval );
         }, 500);
     });
 })();
