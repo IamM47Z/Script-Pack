@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         Subtitles Only
-// @version      0.1
+// @version      1.0
 // @author       M47Z
 // @match        *://animesonline.cc/episodio/*
+// @updateURL    https://raw.githubusercontent.com/imM47Z/animesonline.cc-Script-Pack/master/Subtitles%20Only.js
 // @grant        none
 // ==/UserScript==
 
