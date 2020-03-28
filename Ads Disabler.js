@@ -36,36 +36,46 @@
         if ( adsElementsId == null )
             adsElementsId = GetAdsBannersId( );
 
+        if ( adsElementsId == null )
+            return false;
+
         for( ; document.getElementById( adsElementsId ) != null; )
             document.getElementById( adsElementsId ).remove( );
 
-        return;
+        return true;
     }
 
     var RemoveAdsScripts = ( ) => {
         var scriptsArray = document.getElementsByTagName( "script" );
+        var scriptsRemoved = 0;
         for( var i = 0; i < scriptsArray.length; i++ )
         {
             if( !scriptsArray[ i ].src.includes( "online.js" ) && !scriptsArray[ i ].src.includes( "propellerclick" ) )
                 continue;
 
             scriptsArray[ i ].remove( );
+            scriptsRemoved++;
         }
+
+        return scriptsRemoved == 0;
     }
 
-    // Simple Hooks that dont disturbe the website flow
+    // Simple Hook that does not disturbe the website flow
     window.document.addEventListener = ( type, listener, useCapture ) => {
         return true;
     }
-    window.addEventListener = window.document.addEventListener;
-    
-    WaitForPage( ( ) => {
-        var adsBannersInterval = setInterval( RemoveAdsBanners, 500);
-        var adsScriptsInterval = setInterval( RemoveAdsScripts, 1000);
 
-        setTimeout( ( ) => {
-            clearInterval( adsScriptsInterval );
-            clearInterval( adsBannersInterval );
-        }, 1000);
+    window.addEventListener = window.document.addEventListener;
+
+    WaitForPage( ( ) => {
+        var adsBannersInterval = setInterval( ( ) => {
+            if ( RemoveAdsBanners( ) )
+                clearInterval( adsBannersInterval );
+        }, 500);
+
+        var adsScriptsInterval = setInterval( ( ) => {
+            if ( RemoveAdsScripts( ) )
+                clearInterval( adsScriptsInterval );
+        }, 500);
     });
 })();
