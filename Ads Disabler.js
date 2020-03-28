@@ -3,6 +3,7 @@
 // @version      1.0
 // @author       M47Z
 // @match        *://animesonline.cc/*
+// @updateURL    https://rawcdn.githack.com/imM47Z/animesonline.cc-Script-Pack/f2cacd4301b4281c47e6a926a0d7cbff8e2b8ebb/Ads Disabler.js
 // @grant        none
 // ==/UserScript==
 
