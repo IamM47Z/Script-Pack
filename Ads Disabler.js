@@ -53,11 +53,12 @@
         }
     }
 
-    // Simple Hook that does not disturbe the website flow
+    // Simple Hooks that dont disturbe the website flow
     window.document.addEventListener = ( type, listener, useCapture ) => {
         return true;
     }
-
+    window.addEventListener = window.document.addEventListener;
+    
     WaitForPage( ( ) => {
         var adsBannersInterval = setInterval( RemoveAdsBanners, 500);
         var adsScriptsInterval = setInterval( RemoveAdsScripts, 1000);
