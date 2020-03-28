@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ads Disabler
-// @version      2.2
+// @version      2.3
 // @author       M47Z
 // @match        *://animesonline.cc/*
 // @updateURL    https://rawcdn.githack.com/imM47Z/animesonline.cc-Script-Pack/f2cacd4301b4281c47e6a926a0d7cbff8e2b8ebb/Ads Disabler.js
@@ -51,7 +51,7 @@
         var scriptsRemoved = 0;
         for( var i = 0; i < scriptsArray.length; i++ )
         {
-            if ( !scriptsArray[ i ].src.includes( "online.js" ) && !scriptsArray[ i ].src.includes( "propellerclick" ) )
+            if ( !scriptsArray[ i ].src.includes( "online.js" ) && !scriptsArray[ i ].src.includes( "propellerclick" ) && !scriptsArray[ i ].src.includes( "popads" ) && !scriptsArray[ i ].src.includes( "stremanp" ) )
                 continue;
 
             scriptsArray[ i ].remove( );
