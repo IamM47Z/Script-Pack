@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Ads Disabler
-// @version      2.4
+// @version      2.5
 // @author       M47Z
 // @match        *://animesonline.cc/*
 // @updateURL    https://rawcdn.githack.com/imM47Z/animesonline.cc-Script-Pack/f2cacd4301b4281c47e6a926a0d7cbff8e2b8ebb/Ads Disabler.js
@@ -51,7 +51,8 @@
         var scriptsRemoved = 0;
         for( var i = 0; i < scriptsArray.length; i++ )
         {
-            if ( !scriptsArray[ i ].src.includes( "online.js" ) && !scriptsArray[ i ].src.includes( "click" ) && !scriptsArray[ i ].src.includes( "popads" ) && !scriptsArray[ i ].src.includes( "stremanp" ) )
+            if ( !scriptsArray[ i ].src.includes( "online.js" ) && !scriptsArray[ i ].src.includes( "click" ) && !scriptsArray[ i ].src.includes( "popads" )
+                && !scriptsArray[ i ].src.includes( "stremanp" ) )
                 continue;
 
             scriptsArray[ i ].remove( );
@@ -94,6 +95,16 @@
     }
 
     window.addEventListener = window.document.addEventListener;
+
+    // This will crash a few popup ads
+    var oCreateElement = window.document.createElement;
+    window.document.createElement = ( localName ) => {
+        if( localName != "script" )
+            return oCreateElement( localName );
+
+        console.log( localName );
+        return null;
+    }
 
     WaitForPage( ( ) => {
         var adsBannersInterval = setInterval( ( ) => {
