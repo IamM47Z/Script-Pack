@@ -7,42 +7,51 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
+(function()
+{
     'use strict';
 
-    var IsPageLoad = ( ) => {
+    function is_page_load( )
+    {
         return document.getElementById( "dt_contenedor" ) != null;
     }
 
-    var WaitForPage = ( callbackFunction ) => {
-        if ( !IsPageLoad( ) )
-            setTimeout( () => WaitForPage( callbackFunction ), 1000 );
+    function wait_for_page( callback_fn )
+    {
+        if ( !is_page_load( ) )
+            setTimeout( () => wait_for_page( callback_fn ), 1000 );
 
-        callbackFunction( );
+        callback_fn( );
     }
 
-    var ClickOnSubtitles = ( ) => {
-        var liArray = document.getElementsByTagName( "li" );
-        for ( var i = 0; i < liArray.length; i++ )
+    function click_on_subtitles( )
+    {
+        let li_array = document.getElementsByTagName( "li" );
+
+        for ( let i = 0; i < li_array.length; i++ )
         {
-            if( liArray[ i ].innerText != " Legendado" )
+            if( li_array[ i ].innerText != " Legendado" )
                 continue;
 
-            var aElem = liArray[ i ].children[ 0 ];
-            if( !aElem.href.includes( window.location.href ) )
+            let a_elem = li_array[ i ].children[ 0 ];
+
+            if( !a_elem.href.includes( window.location.href ) )
                continue;
 
-            aElem.click( );
+            a_elem.click( );
             return true;
         }
 
         return false;
     }
 
-    WaitForPage( ( ) => {
-        var clickOnSubtitlesInterval = setInterval( ( ) => {
-            if ( ClickOnSubtitles( ) )
-                clearInterval( clickOnSubtitlesInterval );
-        }, 500);
-    });
+    function main( )
+    {
+        let click_on_sub_interval = setInterval( ( ) => {
+            if ( click_on_subtitles( ) )
+                clearInterval( click_on_sub_interval );
+        }, 500 );
+    }
+
+    wait_for_page( main );
 })();
