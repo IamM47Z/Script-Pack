@@ -3,6 +3,7 @@
 // @version      0.1
 // @author       M47Z
 // @match        *://borutoexplorer.com.br/*
+// @updateURL    https://raw.githubusercontent.com/IamM47Z/Script-Pack/master/right_click_enabler.js
 // @grant        none
 // @run-at       document-start
 // ==/UserScript==
