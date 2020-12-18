@@ -3,7 +3,7 @@
 // @version      1.1
 // @author       M47Z
 // @match        *://animesonline.cc/episodio/*
-// @updateURL    https://raw.githubusercontent.com/IamM47Z/Script-Pack/master/subtitules_only.js
+// @updateURL    https://raw.githubusercontent.com/IamM47Z/Script-Pack/master/subtitles_only.js
 // @grant        none
 // ==/UserScript==
 
