@@ -1,3 +1,3 @@
-# animesonline.cc Script Pack
+# Script Pack
 
-This Repo has a few scripts for animesonline.cc
+This Repo has a few scripts for some random websites
