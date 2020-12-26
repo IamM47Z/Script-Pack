@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Popup Remover
-// @version      1.2
+// @version      1.3
 // @author       M47Z
 // @match        *://animeshouse.net/episodio/*
 // @match        *://animeshouse.biz/v/*
@@ -10,9 +10,13 @@
 (function() {
     'use strict';
 
-    window.open = ( link, target ) =>
+    let oAddEventListener = document.addEventListener;
+    document.addEventListener = ( type, listener, capture=false ) =>
     {
-        return true;
+        if ( listener.name.indexOf( "onExecute" ) > -1 )
+            return true;
+
+        return oAddEventListener( type, listener, capture );
     };
 
     let oAppendChild = document.body.appendChild.bind( document.body );
