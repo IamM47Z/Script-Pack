@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Popup Remover
-// @version      1.3
+// @version      1.5
 // @author       M47Z
 // @match        *://animeshouse.net/episodio/*
 // @match        *://animeshouse.biz/v/*
@@ -10,20 +10,20 @@
 (function() {
     'use strict';
 
-    let oAddEventListener = document.addEventListener;
+    let o_addEventListener = document.addEventListener;
     document.addEventListener = ( type, listener, capture=false ) =>
     {
-        if ( listener.name.indexOf( "onExecute" ) > -1 )
+        if ( listener.name.indexOf( "onExecute" ) > -1 || type == "mousedown" || listener.toString( ).indexOf( "clearTimeout" ) > -1 )
             return true;
 
-        return oAddEventListener( type, listener, capture );
+        return o_addEventListener( type, listener, capture );
     };
 
-    let oAppendChild = document.body.appendChild.bind( document.body );
+    let o_appendChild = document.body.appendChild.bind( document.body );
     document.body.appendChild = ( elem ) =>
     {
         if ( elem.tagName.toLowerCase( ) != "script" )
-            return oAppendChild( elem );
+            return o_appendChild( elem );
 
         return true;
     }
