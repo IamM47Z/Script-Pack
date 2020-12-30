@@ -3,6 +3,7 @@
 // @version      2.0
 // @author       M47Z
 // @match        *://animeshouse.net/episodio/*
+// @match        *://animeshouse.net/filme/*
 // @match        *://animeshouse.biz/v/*
 // @grant        none
 // ==/UserScript==
